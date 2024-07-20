@@ -9,6 +9,7 @@ import ForgotPassword from './src/Screens/AuthScreens/ForgotPassword/ForgotPassw
 import VerifyEmail from './src/Screens/AuthScreens/VerifyEmail/VerifyEmail';
 import CreatePassword from './src/Screens/AuthScreens/CreatePassword/CreatePassword';
 
+
 const stack = createNativeStackNavigator();
 
 const App = () => {
