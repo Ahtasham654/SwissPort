@@ -29,7 +29,11 @@ const LoginScreen = () => {
             <Image style={style.inputIcon} source={Images.passwordIcon} />
           </View>
         </View>
-        <Text style={style.ForgotTxt}>Forgot Password?</Text>
+        <Text
+          style={style.ForgotTxt}
+          onPress={() => navigation.navigate('ForgotPassword')}>
+          Forgot Password?
+        </Text>
         <TouchableOpacity style={style.button}>
           <Text style={style.btnTxt}>Sign in</Text>
         </TouchableOpacity>
