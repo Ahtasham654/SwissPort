@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import {View, Text, Image, TextInput, TouchableOpacity} from 'react-native';
 import React from 'react';
 import style from './style';
@@ -25,6 +26,13 @@ const VerifyEmail = () => {
               {/* <TextInput style={style.Input} placeholder="Enter email" /> */}
               <OTPTextView
                 containerStyle={{marginBottom: 20}}
+                textInputStyle={{
+                  borderWidth: 2,
+                  height: 50,
+                  width: 50,
+                  borderRadius: 10,
+                  marginHorizontal: 20,
+                }}
                 // defaultValue={values?.otp}
                 // handleTextChange={text => {
                 //   handleChange('otp')(text);
@@ -33,14 +41,14 @@ const VerifyEmail = () => {
                 inputCount={4}
                 keyboardType="numeric"
                 inputCellLength={1}
-                textInputStyle={{width: 30}}
+                // textInputStyle={{width: 30}}
               />
             </View>
           </View>
           <TouchableOpacity
             style={style.button}
-            onPress={() => navigation.navigate('VerifyEmail')}>
-            <Text style={style.btnTxt}>Continue</Text>
+            onPress={() => navigation.navigate('CreatePassword')}>
+            <Text style={style.btnTxt}>Verify and Continue</Text>
           </TouchableOpacity>
         </View>
       </View>

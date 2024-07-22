@@ -22,7 +22,10 @@ const SplashScreen = () => {
             onPress={() => navigation.navigate('LoginScreen')}>
             <Text style={{color: 'white', fontWeight: '600'}}>Sign in</Text>
           </TouchableOpacity>
-          <Text style={style.Registertxt}>Register</Text>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('RegisterScreen')}>
+            <Text style={style.Registertxt}>Register</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </ImageBackground>

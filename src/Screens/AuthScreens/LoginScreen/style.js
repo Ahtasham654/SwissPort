@@ -7,7 +7,7 @@ const style = StyleSheet.create({
   },
   logo: {
     width: '70%',
-    marginTop: '10%',
+    marginTop: '3%',
     resizeMode: 'contain',
   },
   Heading: {
@@ -18,7 +18,7 @@ const style = StyleSheet.create({
   LoginContainer: {
     display: 'flex',
     flexDirection: 'column',
-    paddingVertical: 30,
+    paddingVertical: 20,
     width: '80%',
   },
   cell: {
@@ -81,7 +81,7 @@ const style = StyleSheet.create({
   },
   FaceIdButtonContanier: {
     alignItems: 'center',
-    marginVertical: 50,
+    marginVertical: 20,
   },
   FaceIdButton: {
     width: '30%',

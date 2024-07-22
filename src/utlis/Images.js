@@ -6,6 +6,7 @@ const Images = {
   passwordIcon: require('../assests/Password.png'),
   lockIcon: require('../assests/lock.png'),
   keyIcon: require('../assests/key.png'),
+  confirmPasswordIcon: require('../assests/confirmPassword.png'),
 };
 
 export default Images;
