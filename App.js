@@ -8,6 +8,7 @@ import RegisterScreen from './src/Screens/AuthScreens/RegisterScreen/RegisterScr
 import ForgotPassword from './src/Screens/AuthScreens/ForgotPassword/ForgotPassword';
 import VerifyEmail from './src/Screens/AuthScreens/VerifyEmail/VerifyEmail';
 import CreatePassword from './src/Screens/AuthScreens/CreatePassword/CreatePassword';
+import Dashboard from './src/Screens/Dashboard/Tabs/Tabs';
 
 const Stack = createNativeStackNavigator();
 
@@ -43,6 +44,11 @@ const App = () => {
         <Stack.Screen
           name="CreatePassword"
           component={CreatePassword}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Dashboard"
+          component={Dashboard}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
