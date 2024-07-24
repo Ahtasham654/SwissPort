@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
   },
   tabBarStyle: {
     borderTopWidth: 0,
-    height: 70,
+    height: 60,
     elevation: 5,
     backgroundColor: 'transparent',
   },
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   activeTabButton: {
-    borderBottomWidth: 2,
+    borderBottomWidth: 1,
     borderBottomColor: '#E23E1F',
   },
   activeTabButtonBorder: {

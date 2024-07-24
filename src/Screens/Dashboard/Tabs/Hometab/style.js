@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginTop: '3%',
+    // marginTop: '0%',
     width: '100%',
     paddingHorizontal: 20,
   },
@@ -18,13 +18,14 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   Icon: {
-    height: 30,
-    width: 30,
+    height: 25,
+    width: 25,
   },
   HeadingRow: {
     flexDirection: 'row',
     alignSelf: 'flex-start',
-    marginHorizontal: 30,
+    marginHorizontal: 0,
+    gap: 5,
   },
   coloredText: {
     color: '#E23E1F',
@@ -63,6 +64,7 @@ const styles = StyleSheet.create({
   overlayIcon: {
     height: 24,
     width: 24,
+    marginTop: 10,
   },
 });
 

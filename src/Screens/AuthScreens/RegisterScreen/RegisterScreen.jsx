@@ -90,8 +90,8 @@ const RegisterScreen = () => {
             <Text>Enable Face ID</Text>
             <ToggleSwitch
               isOn={toggle}
-              onColor="green"
-              offColor="red"
+              onColor="#E23E1F"
+              offColor="grey"
               labelStyle={{color: 'black', fontWeight: '900'}}
               size="medium"
               onToggle={() => setToggle(!toggle)}
