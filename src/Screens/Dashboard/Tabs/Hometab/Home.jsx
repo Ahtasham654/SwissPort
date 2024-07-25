@@ -1,9 +1,12 @@
+/* eslint-disable react-native/no-inline-styles */
 import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
 import React from 'react';
 import styles from './style';
 import Images from '../../../../utlis/Images';
+import {useNavigation} from '@react-navigation/native';
 
 const Home = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.Container}>
       <View style={styles.Row}>
@@ -16,13 +19,13 @@ const Home = () => {
           <Text style={{fontSize: 22, fontWeight: '700'}}>James</Text>
         </View>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <TouchableOpacity>
-            <View style={styles.cardContainer}>
-              <Image style={styles.ItemImage} source={Images.ItemImage} />
-              <View style={styles.overlay}>
-                <Text style={styles.overlayText}>New Flight</Text>
-                <Image style={styles.overlayIcon} source={Images.flightIcon} />
-              </View>
+          <TouchableOpacity
+            style={styles.cardContainer}
+            onPress={() => navigation.navigate('AddFlight')}>
+            <Image style={styles.ItemImage} source={Images.ItemImage} />
+            <View style={styles.overlay}>
+              <Text style={styles.overlayText}>New Flight</Text>
+              <Image style={styles.overlayIcon} source={Images.flightIcon} />
             </View>
           </TouchableOpacity>
           <TouchableOpacity>

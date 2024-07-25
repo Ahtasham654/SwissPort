@@ -4,12 +4,12 @@ const styles = StyleSheet.create({
   Container: {
     flex: 1,
     alignItems: 'center',
+    // paddingTop: 40,
   },
   Row: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginTop: '3%',
     width: '100%',
     paddingHorizontal: 20,
   },
@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 20,
     marginTop: -30,
+    width: '100%',
   },
   HeaderText: {
     flex: 1,
@@ -37,61 +38,52 @@ const styles = StyleSheet.create({
     height: 25,
     width: 25,
   },
-  HeadingContainer: {
+  Content: {
+    flex: 1,
+    width: '95%',
+    padding: 20,
+  },
+  PointRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 20,
+    justifyContent: 'space-between',
     marginBottom: 20,
-    width: '80%',
-    justifyContent: 'center',
   },
-  BackIcon: {
-    height: 25,
-    width: 25,
-    alignItems: 'left',
-    marginTop: -15,
+  Dot: {
+    width: 7,
+    height: 7,
+    borderRadius: 5,
+    backgroundColor: 'black',
+    marginRight: 10,
   },
-  Heading: {
-    fontSize: 26,
-    fontWeight: '500',
-    marginTop: -20,
+  PointText: {
+    flex: 1,
+    fontSize: 14,
+    marginRight: 10,
   },
-  scrollViewContent: {
-    flexGrow: 1,
-    justifyContent: 'center',
-    width: '100%',
-  },
-  LoginContainer: {
-    width: '80%',
-    alignSelf: 'center',
+  SignatureSection: {
     marginTop: 20,
   },
-  cell: {
-    marginTop: 20,
-    width: '100%',
-    alignItems: 'flex-start',
+  SignatureText: {
+    fontSize: 16,
+    marginBottom: 10,
   },
-  cellTxt: {
-    fontWeight: '600',
-  },
-  inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderRadius: 10,
-    marginTop: 5,
-    paddingHorizontal: 10,
+  SignatureBox: {
     borderWidth: 1,
     borderColor: '#D9D9D9',
+    height: 150,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+    borderRadius: 20,
   },
-  Input: {
-    flex: 1,
-    height: 50,
-    borderRadius: 10,
-    paddingHorizontal: 10,
-  },
-  button: {
+  SignatureInput: {
     width: '100%',
-    backgroundColor: '#E23E1F',
+    height: '100%',
+    textAlign: 'center',
+  },
+  ArrivalButton: {
+    width: '100%',
     height: 50,
     alignItems: 'center',
     justifyContent: 'center',
@@ -99,9 +91,9 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     marginBottom: 20,
   },
-  btnTxt: {
-    color: 'white',
-    fontSize: 16,
+  ArrivalButtonText: {
+    color: '#fff',
+    fontSize: 18,
   },
 });
 

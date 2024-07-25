@@ -10,6 +10,8 @@ import VerifyEmail from './src/Screens/AuthScreens/VerifyEmail/VerifyEmail';
 import CreatePassword from './src/Screens/AuthScreens/CreatePassword/CreatePassword';
 import Dashboard from './src/Screens/Dashboard/Tabs/Tabs';
 import EditProfileScreen from './src/Screens/Dashboard/Tabs/Profiletab/EditProfile/EditProfileScreen';
+import AddFlight from './src/Screens/Dashboard/Tabs/Hometab/AddFlight/AddFlight';
+import BriefingScreen from './src/Screens/Dashboard/Tabs/Hometab/BriefingScreen/BriefingScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -55,6 +57,16 @@ const App = () => {
         <Stack.Screen
           name="EditProfile"
           component={EditProfileScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="AddFlight"
+          component={AddFlight}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="BriefingScreen"
+          component={BriefingScreen}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

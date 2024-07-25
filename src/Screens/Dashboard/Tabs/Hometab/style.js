@@ -48,8 +48,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: '30%',
-    backgroundColor: 'rgba(255, 99, 71, 0.2)', // Adjust the opacity as needed
-    borderBottomLeftRadius: 10,
+    backgroundColor: 'rgba(255, 99, 71, 0.5)',
     borderBottomRightRadius: 10,
     flexDirection: 'row',
     alignItems: 'center',

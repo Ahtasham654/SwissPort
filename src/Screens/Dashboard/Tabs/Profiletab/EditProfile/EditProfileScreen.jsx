@@ -26,9 +26,13 @@ const EditProfileScreen = () => {
           alignItems: 'center',
           justifyContent: 'space-between',
         }}>
-        {/* <Image style={styles.BackIcon} source={Images.BackIcon} /> */}
-
-        <Text style={styles.Heading}>Edit Profile</Text>
+        <View style={styles.Header}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Image style={styles.Icon} source={Images.BackIcon} />
+          </TouchableOpacity>
+          <Text style={styles.HeaderText}>Edit Profile</Text>
+          <View style={styles.Placeholder} />
+        </View>
       </View>
       <ScrollView
         showsVerticalScrollIndicator={false}
