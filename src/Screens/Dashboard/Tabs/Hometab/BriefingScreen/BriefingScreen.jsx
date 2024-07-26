@@ -68,6 +68,7 @@ const BriefingScreen = () => {
             styles.ArrivalButton,
             {backgroundColor: isAllToggled ? '#E23E1F' : 'gray'},
           ]}
+          onPress={() => navigation.navigate('ArrivalScreen')}
           disabled={!isAllToggled}>
           <Text style={styles.ArrivalButtonText}>Arrival</Text>
         </TouchableOpacity>

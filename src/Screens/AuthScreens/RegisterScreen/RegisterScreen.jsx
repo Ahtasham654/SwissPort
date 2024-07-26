@@ -19,7 +19,13 @@ const RegisterScreen = () => {
   return (
     <View style={style.Container}>
       <Image style={style.logo} source={Images.logo} />
-      <Text style={style.Heading}>Register</Text>
+      <View style={style.Header}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Image style={style.Icon} source={Images.BackIcon} />
+        </TouchableOpacity>
+        <Text style={style.HeaderText}>Registration</Text>
+        <View style={style.Placeholder} />
+      </View>
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={style.scrollViewContent}>

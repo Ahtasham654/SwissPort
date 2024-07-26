@@ -12,6 +12,8 @@ import Dashboard from './src/Screens/Dashboard/Tabs/Tabs';
 import EditProfileScreen from './src/Screens/Dashboard/Tabs/Profiletab/EditProfile/EditProfileScreen';
 import AddFlight from './src/Screens/Dashboard/Tabs/Hometab/AddFlight/AddFlight';
 import BriefingScreen from './src/Screens/Dashboard/Tabs/Hometab/BriefingScreen/BriefingScreen';
+import ArrivalScreen from './src/Screens/Dashboard/Tabs/Hometab/ArrivalScreen/ArrivalScreen';
+import AcknowledgeScreen from './src/Screens/Dashboard/Tabs/Hometab/AcknowledgeScreen/AcknowledgeScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -67,6 +69,16 @@ const App = () => {
         <Stack.Screen
           name="BriefingScreen"
           component={BriefingScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="ArrivalScreen"
+          component={ArrivalScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="AcknowledgeScreen"
+          component={AcknowledgeScreen}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

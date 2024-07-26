@@ -35,7 +35,7 @@ const Home = () => {
                 source={Images.inprogressFlightImg}
               />
               <View style={styles.overlay}>
-                <Text style={styles.overlayText} />
+                <Text style={styles.overlayText}> In Progress</Text>
                 <Image
                   style={styles.overlayIcon}
                   source={Images.inprogressFlightIcon}

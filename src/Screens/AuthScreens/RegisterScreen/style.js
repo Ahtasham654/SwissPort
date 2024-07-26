@@ -12,6 +12,27 @@ const style = StyleSheet.create({
     marginTop: '3%',
     resizeMode: 'contain',
   },
+  Header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    marginTop: -30,
+    width: '100%',
+  },
+  HeaderText: {
+    flex: 1,
+    textAlign: 'center',
+    fontSize: 24,
+    fontWeight: '600',
+  },
+  Placeholder: {
+    width: 25,
+    height: 25,
+  },
+  Icon: {
+    height: 25,
+    width: 25,
+  },
   Heading: {
     fontSize: 26,
     fontWeight: '500',

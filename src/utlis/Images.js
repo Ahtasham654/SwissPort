@@ -19,6 +19,9 @@ const Images = {
   ForwordIcon: require('../assests/forword.png'),
   BackIcon: require('../assests/back.png'),
   inprogressFlightImg: require('../assests/inprogressFlight.png'),
+  AirplaneImg: require('../assests/Airplane.png'),
+  CameraIcon: require('../assests/camera.png'),
+  PictureIcon: require('../assests/PictureIcon.png'),
 };
 
 export default Images;
