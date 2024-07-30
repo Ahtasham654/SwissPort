@@ -28,20 +28,22 @@ const Home = () => {
               <Image style={styles.overlayIcon} source={Images.flightIcon} />
             </View>
           </TouchableOpacity>
-          <TouchableOpacity>
-            <View style={styles.cardContainer}>
+          <TouchableOpacity
+            style={styles.cardContainer}
+            onPress={() => navigation.navigate('InProgressFlight')}>
+            {/* <View style={styles.cardContainer}> */}
+            <Image
+              style={styles.ItemImage}
+              source={Images.inprogressFlightImg}
+            />
+            <View style={styles.overlay}>
+              <Text style={styles.overlayText}> In Progress</Text>
               <Image
-                style={styles.ItemImage}
-                source={Images.inprogressFlightImg}
+                style={styles.overlayIcon}
+                source={Images.inprogressFlightIcon}
               />
-              <View style={styles.overlay}>
-                <Text style={styles.overlayText}> In Progress</Text>
-                <Image
-                  style={styles.overlayIcon}
-                  source={Images.inprogressFlightIcon}
-                />
-              </View>
             </View>
+            {/* </View> */}
           </TouchableOpacity>
         </ScrollView>
       </View>

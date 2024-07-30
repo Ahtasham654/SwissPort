@@ -4,7 +4,7 @@ import styles from './style';
 import Images from '../../../../../utlis/Images';
 import {useNavigation} from '@react-navigation/native';
 
-const AcknowledgeScreen = () => {
+const DepartureAcknowledge = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.Container}>
@@ -27,13 +27,13 @@ const AcknowledgeScreen = () => {
             width: '80%',
             textAlign: 'center',
           }}>
-          I acknowledge that I have photographed and inspected the arrival
-          condition of this aircraft and that there is no obvious damage.
+          I acknowledge that i have photographed and inspected the aircraft
+          prior to departure and it is free from obvious signs of damage.
         </Text>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('DepartureScreen')}>
-          <Text style={styles.btnTxt}>No Damage</Text>
+          onPress={() => navigation.navigate('ReportDamage')}>
+          <Text style={styles.btnTxt}>Submit</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.ReportButton}
@@ -44,4 +44,4 @@ const AcknowledgeScreen = () => {
     </View>
   );
 };
-export default AcknowledgeScreen;
+export default DepartureAcknowledge;

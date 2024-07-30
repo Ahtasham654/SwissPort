@@ -14,6 +14,10 @@ import AddFlight from './src/Screens/Dashboard/Tabs/Hometab/AddFlight/AddFlight'
 import BriefingScreen from './src/Screens/Dashboard/Tabs/Hometab/BriefingScreen/BriefingScreen';
 import ArrivalScreen from './src/Screens/Dashboard/Tabs/Hometab/ArrivalScreen/ArrivalScreen';
 import AcknowledgeScreen from './src/Screens/Dashboard/Tabs/Hometab/AcknowledgeScreen/AcknowledgeScreen';
+import DepartureScreen from './src/Screens/Dashboard/Tabs/Hometab/DepartureScreen/DepartureScreen';
+import DepartureAcknowledge from './src/Screens/Dashboard/Tabs/Hometab/DepartureAcknowledge/DepartureAcknowledge';
+import ReportDamage from './src/Screens/Dashboard/Tabs/Hometab/ReportDamage/ReportDamage';
+import InProgressFlight from './src/Screens/Dashboard/Tabs/Hometab/InProgressFlights/InProgressFlight';
 
 const Stack = createNativeStackNavigator();
 
@@ -79,6 +83,26 @@ const App = () => {
         <Stack.Screen
           name="AcknowledgeScreen"
           component={AcknowledgeScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="DepartureScreen"
+          component={DepartureScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="DepartureAcknowledge"
+          component={DepartureAcknowledge}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="ReportDamage"
+          component={ReportDamage}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="InProgressFlight"
+          component={InProgressFlight}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
