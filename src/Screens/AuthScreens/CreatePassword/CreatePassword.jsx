@@ -74,8 +74,9 @@ const CreatePassword = () => {
             )}
             <TouchableOpacity
               style={style.button}
-              // onPress={() => navigation.navigate('LoginScreen')}
-              onPress={handleSubmit}>
+              onPress={() => navigation.navigate('LoginScreen')}
+              // onPress={handleSubmit}
+            >
               <Text style={style.btnTxt}>Reset Password</Text>
             </TouchableOpacity>
           </View>

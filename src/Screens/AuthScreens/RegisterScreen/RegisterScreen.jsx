@@ -7,6 +7,7 @@ import {
   TextInput,
   ScrollView,
   TouchableOpacity,
+  ActivityIndicator,
 } from 'react-native';
 import style from './style';
 import Images from '../../../utlis/Images';
@@ -14,13 +15,27 @@ import ToggleSwitch from 'toggle-switch-react-native';
 import {useNavigation} from '@react-navigation/native';
 import {registrationSchema} from '../../../utlis/Validation';
 import {Formik} from 'formik';
+import {handleApi} from '../../../utlis/handleApi';
 
 const RegisterScreen = () => {
   const navigation = useNavigation();
   const [toggle, setToggle] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const onSubmitLogin = values => {
+  const onSubmitLogin = async values => {
     console.log('Registration form data', values);
+    setLoading(true);
+    try {
+      const result = await handleApi.post('register', values);
+      if (result?.status === 200) {
+        console.log('User Register SuccessFully');
+        navigation.navigate('VerifyEmail');
+      }
+      setLoading(false);
+    } catch (error) {
+      console.log('error', error);
+      setLoading(false);
+    }
   };
   return (
     <Formik
@@ -29,11 +44,11 @@ const RegisterScreen = () => {
       validateOnChange={false}
       validateOnBlur={true}
       initialValues={{
-        firstName: '',
-        lastName: '',
-        Email: '',
+        first_name: '',
+        last_name: '',
+        email: '',
         password: '',
-        employeeNumber: '',
+        employee_number: '',
         station: '',
       }}>
       {({handleChange, handleSubmit, values, errors}) => (
@@ -56,16 +71,16 @@ const RegisterScreen = () => {
                   <TextInput
                     style={style.Input}
                     placeholder="Enter first name"
-                    value={values.firstName}
+                    value={values.first_name}
                     onChangeText={text => {
-                      handleChange('firstName')(text);
+                      handleChange('first_name')(text);
                     }}
                   />
                 </View>
               </View>
-              {errors.firstName && (
+              {errors.first_name && (
                 <Text style={{color: 'red', marginTop: 5}}>
-                  {errors.firstName}
+                  {errors.first_name}
                 </Text>
               )}
               <View style={style.cell}>
@@ -74,33 +89,33 @@ const RegisterScreen = () => {
                   <TextInput
                     style={style.Input}
                     placeholder="Enter last name"
-                    value={values.lastName}
+                    value={values.last_name}
                     onChangeText={text => {
-                      handleChange('lastName')(text);
+                      handleChange('last_name')(text);
                     }}
                   />
                 </View>
               </View>
-              {errors.lastName && (
+              {errors.last_name && (
                 <Text style={{color: 'red', marginTop: 5}}>
-                  {errors.lastName}
+                  {errors.last_name}
                 </Text>
               )}
               <View style={style.cell}>
-                <Text style={style.cellTxt}>Email</Text>
+                <Text style={style.cellTxt}>email</Text>
                 <View style={style.inputContainer}>
                   <TextInput
                     style={style.Input}
                     placeholder="Enter email"
-                    value={values.Email}
+                    value={values.email}
                     onChangeText={text => {
-                      handleChange('Email')(text);
+                      handleChange('email')(text);
                     }}
                   />
                 </View>
               </View>
-              {errors.Email && (
-                <Text style={{color: 'red', marginTop: 5}}>{errors.Email}</Text>
+              {errors.email && (
+                <Text style={{color: 'red', marginTop: 5}}>{errors.email}</Text>
               )}
               <View style={style.cell}>
                 <Text style={style.cellTxt}>Password</Text>
@@ -126,16 +141,16 @@ const RegisterScreen = () => {
                   <TextInput
                     style={style.Input}
                     placeholder="Enter employee number"
-                    value={values.employeeNumber}
+                    value={values.employee_number}
                     onChangeText={text => {
-                      handleChange('employeeNumber')(text);
+                      handleChange('employee_number')(text);
                     }}
                   />
                 </View>
               </View>
-              {errors.employeeNumber && (
+              {errors.employee_number && (
                 <Text style={{color: 'red', marginTop: 5}}>
-                  {errors.employeeNumber}
+                  {errors.employee_number}
                 </Text>
               )}
               <View style={style.cell}>
@@ -178,7 +193,9 @@ const RegisterScreen = () => {
                   style={style.button}
                   // onPress={() => navigation.navigate('VerifyEmail')}
                   onPress={handleSubmit}>
-                  <Text style={style.btnTxt}>Register</Text>
+                  <Text style={style.btnTxt}>
+                    {loading ? <ActivityIndicator /> : 'Register'}
+                  </Text>
                 </TouchableOpacity>
               </View>
             </View>

@@ -62,8 +62,9 @@ const VerifyEmail = () => {
 
               <TouchableOpacity
                 style={style.button}
-                // onPress={() => navigation.navigate('CreatePassword')}
-                onPress={handleSubmit}>
+                onPress={() => navigation.navigate('CreatePassword')}
+                // onPress={handleSubmit}
+              >
                 <Text style={style.btnTxt}>Verify and Continue</Text>
               </TouchableOpacity>
             </View>

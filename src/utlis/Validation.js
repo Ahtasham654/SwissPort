@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 
 const loginSchema = yup.object().shape({
-  username: yup.string().email('Invalid email').required('Email is required'),
+  email: yup.string().email('Invalid email').required('Email is required'),
   password: yup
     .string()
     .min(6, 'Password must be at least 6 characters')
@@ -11,25 +11,25 @@ const forgetPasswordSchema = yup.object().shape({
   username: yup.string().email('Invalid email').required('Email is required'),
 });
 const registrationSchema = yup.object().shape({
-  firstName: yup
+  first_name: yup
     .string()
     .required('First Name is required')
     .min(3, 'At least 3 characters')
     .max(30, 'At most 30 characters'),
 
-  lastName: yup
+  last_name: yup
     .string()
     .required('Last Name is required')
     .min(3, 'At least 3 characters')
     .max(30, 'At most 30 characters'),
 
-  Email: yup.string().email('Invalid email').required('Email is Required'),
+  email: yup.string().email('Invalid email').required('Email is Required'),
 
   password: yup
     .string()
     .min(6, 'Password must be at least 6 characters')
     .required('Password is required'),
-  employeeNumber: yup.string().required('Employee Number is required'),
+  employee_number: yup.string().required('Employee Number is required'),
 
   station: yup.string().required('Station is required'),
 });

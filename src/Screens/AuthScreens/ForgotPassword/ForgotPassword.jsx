@@ -57,8 +57,9 @@ const ForgotPassword = () => {
 
               <TouchableOpacity
                 style={style.button}
-                // onPress={() => navigation.navigate('VerifyEmail')}
-                onPress={handleSubmit}>
+                onPress={() => navigation.navigate('VerifyEmail')}
+                // onPress={handleSubmit}
+              >
                 <Text style={style.btnTxt}>Continue</Text>
               </TouchableOpacity>
             </View>
