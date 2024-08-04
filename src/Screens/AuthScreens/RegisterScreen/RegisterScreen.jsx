@@ -22,24 +22,35 @@ const RegisterScreen = () => {
   const [toggle, setToggle] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const onSubmitLogin = async values => {
+  const onSubmitForm = async values => {
     console.log('Registration form data', values);
     setLoading(true);
     try {
       const result = await handleApi.post('register', values);
-      if (result?.status === 200) {
-        console.log('User Register SuccessFully');
-        navigation.navigate('VerifyEmail');
+      console.log('result', result);
+      if (result?.status === 201) {
+        console.log('User Register Successfully');
+        navigation.navigate('LoginScreen');
       }
-      setLoading(false);
+      navigation.navigate('LoginScreen');
     } catch (error) {
       console.log('error', error);
       setLoading(false);
+    } finally {
+      console.log('wertewtert');
+      setLoading(false);
     }
   };
+
+  // const onSubmitForm = values => {
+  //   console.log('values', values);
+  //   const result = handleApi.post('register', values);
+  //   console.log('result data', result);
+  // };
+
   return (
     <Formik
-      onSubmit={onSubmitLogin}
+      onSubmit={onSubmitForm}
       validationSchema={registrationSchema}
       validateOnChange={false}
       validateOnBlur={true}

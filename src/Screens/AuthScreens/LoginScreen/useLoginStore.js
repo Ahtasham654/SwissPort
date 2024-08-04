@@ -15,7 +15,7 @@ const useLoginStore = create(set => ({
     try {
       const result = await handleApi.post('login', values);
       console.log('result', result);
-      if (result?.data?.Status === 200) {
+      if (result?.status === 200) {
         console.log('login Successfully');
         navigation.navigate('Dashboard');
       }
