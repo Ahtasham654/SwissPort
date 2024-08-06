@@ -1,16 +1,44 @@
-import {View, Text, Image, TextInput, TouchableOpacity} from 'react-native';
-import React from 'react';
+import {
+  View,
+  Text,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  ActivityIndicator,
+} from 'react-native';
+import React, {useState} from 'react';
 import style from './style';
 import Images from '../../../utlis/Images';
 import {useNavigation} from '@react-navigation/native';
 import {Formik} from 'formik';
 import {createPasswordSchema} from '../../../utlis/Validation';
+import {handleApi} from '../../../utlis/handleApi';
+import useVerifyEmailStore from '../VerifyEmail/useVerifyEmailStore';
 
 const CreatePassword = () => {
   const navigation = useNavigation();
+  const [loading, setLoading] = useState(false);
+  const {passwordData} = useVerifyEmailStore();
 
-  const onSubmitForm = values => {
-    console.log('Submit Form Data', values);
+  const onSubmitForm = async values => {
+    const {password, email, tfa_code} = values;
+    const dataToSend = {password, email, tfa_code};
+
+    setLoading(true);
+    console.log('dataToSend....', dataToSend);
+    try {
+      const result = await handleApi.post('reset-password', dataToSend);
+      if (result?.status === 200) {
+        console.log('Password successfully reset', result?.data);
+        setLoading(false);
+        navigation.navigate('LoginScreen');
+      }
+    } catch (error) {
+      console.log('error', error);
+      setLoading(false);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -19,7 +47,12 @@ const CreatePassword = () => {
       validationSchema={createPasswordSchema}
       validateOnChange={false}
       validateOnBlur={true}
-      initialValues={{newPassword: '', confirmPassword: ''}}>
+      initialValues={{
+        password: '',
+        confirmPassword: '',
+        email: passwordData?.email,
+        tfa_code: passwordData?.tfa_code,
+      }}>
       {({handleChange, handleSubmit, values, errors}) => (
         <View style={style.Container}>
           <View style={style.Circle}>
@@ -42,15 +75,18 @@ const CreatePassword = () => {
                 <TextInput
                   style={style.Input}
                   placeholder="Enter new Password"
-                  value={values.newPassword}
+                  value={values.password}
                   onChangeText={text => {
-                    handleChange('newPassword')(text);
+                    handleChange('password')(text);
                   }}
                 />
               </View>
             </View>
-            {errors.newPassword && (
-              <Text style={{color: 'red'}}>{errors.newPassword}</Text>
+            {errors.password && (
+              <Text
+                style={{color: 'red', alignSelf: 'flex-start', marginTop: 5}}>
+                {errors.password}
+              </Text>
             )}
             <View style={style.cell}>
               <Text style={style.cellTxt}>Confirm New Password</Text>
@@ -72,12 +108,12 @@ const CreatePassword = () => {
                 {errors.confirmPassword}
               </Text>
             )}
-            <TouchableOpacity
-              style={style.button}
-              onPress={() => navigation.navigate('LoginScreen')}
-              // onPress={handleSubmit}
-            >
-              <Text style={style.btnTxt}>Reset Password</Text>
+            <TouchableOpacity style={style.button} onPress={handleSubmit}>
+              {loading ? (
+                <ActivityIndicator />
+              ) : (
+                <Text style={style.btnTxt}>Reset Password</Text>
+              )}
             </TouchableOpacity>
           </View>
         </View>

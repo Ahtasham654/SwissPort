@@ -4,7 +4,7 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
-  Dimensions,
+  ActivityIndicator,
 } from 'react-native';
 import React from 'react';
 import style from './style';
@@ -12,20 +12,23 @@ import Images from '../../../utlis/Images';
 import {useNavigation} from '@react-navigation/native';
 import {forgetPasswordSchema} from '../../../utlis/Validation';
 import {Formik} from 'formik';
+import useForgotPasswordStore from './useForgotPasswordStore';
 
 const ForgotPassword = () => {
   const navigation = useNavigation();
+  const {loading, status, onSubmitForm} = useForgotPasswordStore();
 
-  const onSubmitForm = values => {
-    console.log('forgetPassword data', values);
+  const SubmitForm = values => {
+    onSubmitForm(values, navigation);
   };
+
   return (
     <Formik
-      onSubmit={onSubmitForm}
+      onSubmit={SubmitForm}
       validationSchema={forgetPasswordSchema}
       validateOnChange={false}
       validateOnBlur={false}
-      initialValues={{username: ''}}>
+      initialValues={{email: ''}}>
       {({handleChange, handleSubmit, values, errors}) => (
         <View style={style.Container}>
           <View style={style.Circle}>
@@ -44,23 +47,22 @@ const ForgotPassword = () => {
                   <TextInput
                     style={style.Input}
                     placeholder="Enter email"
-                    value={values.username}
-                    onChangeText={text => {
-                      handleChange('username')(text);
-                    }}
+                    value={values.email}
+                    onChangeText={text => handleChange('email')(text)}
                   />
                 </View>
               </View>
-              {errors.username && (
-                <Text style={{color: 'red'}}>{errors.username}</Text>
+              {errors.email && (
+                <Text style={{color: 'red', marginTop: 5}}>{errors.email}</Text>
+              )}
+              {status && (
+                <Text style={{color: 'red', marginTop: 5}}>{status}</Text>
               )}
 
-              <TouchableOpacity
-                style={style.button}
-                onPress={() => navigation.navigate('VerifyEmail')}
-                // onPress={handleSubmit}
-              >
-                <Text style={style.btnTxt}>Continue</Text>
+              <TouchableOpacity style={style.button} onPress={handleSubmit}>
+                <Text style={style.btnTxt}>
+                  {loading ? <ActivityIndicator /> : 'Continue'}
+                </Text>
               </TouchableOpacity>
             </View>
           </View>

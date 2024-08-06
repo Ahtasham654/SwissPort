@@ -1,27 +1,36 @@
-/* eslint-disable react-native/no-inline-styles */
-import {View, Text, Image, TextInput, TouchableOpacity} from 'react-native';
 import React from 'react';
-import style from './style';
-import Images from '../../../utlis/Images';
-import {useNavigation} from '@react-navigation/native';
-import OTPTextView from 'react-native-otp-textinput';
-import {otpCode} from '../../../utlis/Validation';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  ActivityIndicator,
+} from 'react-native';
 import {Formik} from 'formik';
+import OTPTextView from 'react-native-otp-textinput';
+import {useNavigation} from '@react-navigation/native';
+import Images from '../../../utlis/Images';
+import {otpCode} from '../../../utlis/Validation';
+import style from './style';
+import useForgotPasswordStore from '../ForgotPassword/useForgotPasswordStore';
+import useVerifyEmailStore from './useVerifyEmailStore';
 
 const VerifyEmail = () => {
   const navigation = useNavigation();
+  const {email} = useForgotPasswordStore();
+  const {loading, status, onSubmitForm} = useVerifyEmailStore();
 
-  const onSubmitForm = values => {
-    console.log('onSubmitFormm', values);
+  const handleFormSubmit = async values => {
+    onSubmitForm(values, navigation);
   };
 
   return (
     <Formik
-      onSubmit={onSubmitForm}
+      onSubmit={handleFormSubmit}
       validationSchema={otpCode}
       validateOnChange={false}
       validateOnBlur={false}
-      initialValues={{otp: ''}}>
+      initialValues={{tfa_code: '', email}}>
       {({handleChange, handleSubmit, values, errors}) => (
         <View style={style.Container}>
           <View style={style.Circle}>
@@ -37,7 +46,6 @@ const VerifyEmail = () => {
             <View style={style.ForgotContainer}>
               <View style={style.cell}>
                 <View style={style.inputContainer}>
-                  {/* <TextInput style={style.Input} placeholder="Enter email" /> */}
                   <OTPTextView
                     containerStyle={{marginBottom: 20}}
                     textInputStyle={{
@@ -47,25 +55,26 @@ const VerifyEmail = () => {
                       borderRadius: 10,
                       marginHorizontal: 20,
                     }}
-                    defaultValue={values?.otp}
-                    handleTextChange={text => {
-                      handleChange('otp')(text);
-                    }}
+                    defaultValue={values?.tfa_code}
+                    handleTextChange={text => handleChange('tfa_code')(text)}
                     inputCount={4}
                     keyboardType="numeric"
                     inputCellLength={1}
-                    // textInputStyle={{width: 30}}
                   />
                 </View>
               </View>
-              {errors.otp && <Text style={{color: 'red'}}>{errors.otp}</Text>}
+              {errors.tfa_code && (
+                <Text style={{color: 'red'}}>{errors.tfa_code}</Text>
+              )}
 
-              <TouchableOpacity
-                style={style.button}
-                onPress={() => navigation.navigate('CreatePassword')}
-                // onPress={handleSubmit}
-              >
-                <Text style={style.btnTxt}>Verify and Continue</Text>
+              {status && <Text style={{color: 'red'}}>{status}</Text>}
+
+              <TouchableOpacity style={style.button} onPress={handleSubmit}>
+                {loading ? (
+                  <ActivityIndicator />
+                ) : (
+                  <Text style={style.btnTxt}>Verify and Continue</Text>
+                )}
               </TouchableOpacity>
             </View>
           </View>

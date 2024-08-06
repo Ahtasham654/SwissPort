@@ -1,4 +1,3 @@
-// useLoginStore.js
 import {create} from 'zustand';
 import {handleApi} from '../../../utlis/handleApi';
 
@@ -24,7 +23,7 @@ const useLoginStore = create(set => ({
       set({
         status:
           error?.response?.data?.message ||
-          'Invalid login details. Please try again. ',
+          'Invalid login details. Please try again.',
       });
     } finally {
       set({loading: false});

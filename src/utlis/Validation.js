@@ -8,7 +8,7 @@ const loginSchema = yup.object().shape({
     .required('Password is required'),
 });
 const forgetPasswordSchema = yup.object().shape({
-  username: yup.string().email('Invalid email').required('Email is required'),
+  email: yup.string().email('Invalid email').required('Email is required'),
 });
 const registrationSchema = yup.object().shape({
   first_name: yup
@@ -34,7 +34,7 @@ const registrationSchema = yup.object().shape({
   station: yup.string().required('Station is required'),
 });
 const otpCode = yup.object().shape({
-  otp: yup
+  tfa_code: yup
     .string()
     .required('OTP is required')
     .matches(/^[0-9]{4}$/, 'OTP must be exactly 4 digits'),

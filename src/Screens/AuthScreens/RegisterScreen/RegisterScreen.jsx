@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import {
   View,
@@ -8,49 +7,37 @@ import {
   ScrollView,
   TouchableOpacity,
   ActivityIndicator,
+  Modal,
 } from 'react-native';
+import {RNCamera} from 'react-native-camera';
 import style from './style';
 import Images from '../../../utlis/Images';
 import ToggleSwitch from 'toggle-switch-react-native';
 import {useNavigation} from '@react-navigation/native';
 import {registrationSchema} from '../../../utlis/Validation';
 import {Formik} from 'formik';
-import {handleApi} from '../../../utlis/handleApi';
+import useRegisterStore from './useRegistrationStore';
 
 const RegisterScreen = () => {
   const navigation = useNavigation();
-  const [toggle, setToggle] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const {toggle, loading, status, setToggle, onSubmitForm} = useRegisterStore();
+  const [isCameraVisible, setIsCameraVisible] = useState(false);
+  const [faceData, setFaceData] = useState(null);
 
-  const onSubmitForm = async values => {
-    console.log('Registration form data', values);
-    setLoading(true);
-    try {
-      const result = await handleApi.post('register', values);
-      console.log('result', result);
-      if (result?.status === 201) {
-        console.log('User Register Successfully');
-        navigation.navigate('LoginScreen');
-      }
-      navigation.navigate('LoginScreen');
-    } catch (error) {
-      console.log('error', error);
-      setLoading(false);
-    } finally {
-      console.log('wertewtert');
-      setLoading(false);
+  const submitRegistrationForm = values => {
+    onSubmitForm(values, navigation, faceData);
+  };
+
+  const handleFaceDetection = ({faces}) => {
+    if (faces.length > 0) {
+      setFaceData(faces[0]);
+      setIsCameraVisible(false);
     }
   };
 
-  // const onSubmitForm = values => {
-  //   console.log('values', values);
-  //   const result = handleApi.post('register', values);
-  //   console.log('result data', result);
-  // };
-
   return (
     <Formik
-      onSubmit={onSubmitForm}
+      onSubmit={submitRegistrationForm}
       validationSchema={registrationSchema}
       validateOnChange={false}
       validateOnBlur={true}
@@ -196,14 +183,14 @@ const RegisterScreen = () => {
                   offColor="grey"
                   labelStyle={{color: 'black', fontWeight: '900'}}
                   size="medium"
-                  onToggle={() => setToggle(!toggle)}
+                  onToggle={() => {
+                    setToggle(!toggle);
+                    setIsCameraVisible(!toggle);
+                  }}
                 />
               </View>
               <View style={style.inputButtonContainer}>
-                <TouchableOpacity
-                  style={style.button}
-                  // onPress={() => navigation.navigate('VerifyEmail')}
-                  onPress={handleSubmit}>
+                <TouchableOpacity style={style.button} onPress={handleSubmit}>
                   <Text style={style.btnTxt}>
                     {loading ? <ActivityIndicator /> : 'Register'}
                   </Text>
@@ -211,6 +198,15 @@ const RegisterScreen = () => {
               </View>
             </View>
           </ScrollView>
+
+          {/* <Modal visible={isCameraVisible} transparent={false}>
+            <RNCamera
+              style={{flex: 1}}
+              type={RNCamera.Constants.Type.front}
+              onFacesDetected={handleFaceDetection}
+              faceDetectionMode={RNCamera.Constants.FaceDetection.Mode.fast}
+            />
+          </Modal> */}
         </View>
       )}
     </Formik>

@@ -1,3 +1,4 @@
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -5,22 +6,31 @@ import {
   TextInput,
   TouchableOpacity,
   ActivityIndicator,
+  Modal,
 } from 'react-native';
-import React from 'react';
+import {RNCamera} from 'react-native-camera';
+import {Formik} from 'formik';
+import {useNavigation} from '@react-navigation/native';
 import Images from '../../../utlis/Images';
 import {loginSchema} from '../../../utlis/Validation';
 import style from './style';
-import {useNavigation} from '@react-navigation/native';
-import {Formik} from 'formik';
 import useLoginStore from './useLoginStore';
 
 const LoginScreen = () => {
   const navigation = useNavigation();
   const {secure, loading, status, setSecure, handleSubmitForm} =
     useLoginStore();
+  const [isCameraVisible, setIsCameraVisible] = useState(false);
 
   const onSubmitLogin = async values => {
     handleSubmitForm(values, navigation);
+  };
+
+  const handleFaceDetection = ({faces}) => {
+    if (faces.length > 0) {
+      setIsCameraVisible(false);
+      handleSubmitForm({faceData: faces[0]}, navigation);
+    }
   };
 
   return (
@@ -87,12 +97,23 @@ const LoginScreen = () => {
               </TouchableOpacity>
             </View>
             <View style={style.FaceIdButtonContanier}>
-              <TouchableOpacity style={style.FaceIdButton}>
+              <TouchableOpacity
+                style={style.FaceIdButton}
+                onPress={() => setIsCameraVisible(true)}>
                 <Image style={style.FeceIdIcon} source={Images.faceId} />
               </TouchableOpacity>
               <Text style={style.FaceIdTxt}>Login with Face ID</Text>
             </View>
           </View>
+
+          {/* <Modal visible={isCameraVisible} transparent={false}>
+            <RNCamera
+              style={{flex: 1}}
+              type={RNCamera.Constants.Type.front}
+              onFacesDetected={handleFaceDetection}
+              faceDetectionMode={RNCamera.Constants.FaceDetection.Mode.fast}
+            />
+          </Modal> */}
         </View>
       )}
     </Formik>
