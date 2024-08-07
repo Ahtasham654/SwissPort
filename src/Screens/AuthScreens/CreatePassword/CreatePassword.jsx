@@ -12,38 +12,21 @@ import Images from '../../../utlis/Images';
 import {useNavigation} from '@react-navigation/native';
 import {Formik} from 'formik';
 import {createPasswordSchema} from '../../../utlis/Validation';
-import {handleApi} from '../../../utlis/handleApi';
+import useCreatePasswordStore from './useCreatePasswordStore';
 import useVerifyEmailStore from '../VerifyEmail/useVerifyEmailStore';
 
 const CreatePassword = () => {
   const navigation = useNavigation();
-  const [loading, setLoading] = useState(false);
   const {passwordData} = useVerifyEmailStore();
+  const {loading, postSubmitForm} = useCreatePasswordStore();
 
-  const onSubmitForm = async values => {
-    const {password, email, tfa_code} = values;
-    const dataToSend = {password, email, tfa_code};
-
-    setLoading(true);
-    console.log('dataToSend....', dataToSend);
-    try {
-      const result = await handleApi.post('reset-password', dataToSend);
-      if (result?.status === 200) {
-        console.log('Password successfully reset', result?.data);
-        setLoading(false);
-        navigation.navigate('LoginScreen');
-      }
-    } catch (error) {
-      console.log('error', error);
-      setLoading(false);
-    } finally {
-      setLoading(false);
-    }
+  const handleSubmit = values => {
+    postSubmitForm(values, navigation);
   };
 
   return (
     <Formik
-      onSubmit={onSubmitForm}
+      onSubmit={handleSubmit}
       validationSchema={createPasswordSchema}
       validateOnChange={false}
       validateOnBlur={true}

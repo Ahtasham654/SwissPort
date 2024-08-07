@@ -11,7 +11,9 @@ const Home = () => {
     <View style={styles.Container}>
       <View style={styles.Row}>
         <Image style={styles.logo} source={Images.logo} />
-        <Image style={styles.Icon} source={Images.LogoutIcon} />
+        <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
+          <Image style={styles.Icon} source={Images.LogoutIcon} />
+        </TouchableOpacity>
       </View>
       <View style={{marginTop: -30}}>
         <View style={styles.HeadingRow}>

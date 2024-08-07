@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import {
   View,
   Text,
@@ -16,18 +17,14 @@ import CustomDropdown from '../../../../../components/CustomDropDown';
 import {useNavigation} from '@react-navigation/native';
 
 const stationData = [
-  {
-    value: 1,
-    name: 'Section XYZ',
-  },
-  {
-    value: 2,
-    name: 'Section ABC',
-  },
-  {
-    value: 2,
-    name: 'Section MNO',
-  },
+  {label: 'Item 1', value: '1'},
+  {label: 'Item 2', value: '2'},
+  {label: 'Item 3', value: '3'},
+  {label: 'Item 4', value: '4'},
+  {label: 'Item 5', value: '5'},
+  {label: 'Item 6', value: '6'},
+  {label: 'Item 7', value: '7'},
+  {label: 'Item 8', value: '8'},
 ];
 
 const AddFlight = () => {
@@ -81,7 +78,9 @@ const AddFlight = () => {
     <View style={styles.Container}>
       <View style={styles.Row}>
         <Image style={styles.logo} source={Images.logo} />
-        <Image style={styles.Icon} source={Images.LogoutIcon} />
+        <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
+          <Image style={styles.Icon} source={Images.LogoutIcon} />
+        </TouchableOpacity>
       </View>
       <View style={styles.Header}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -134,17 +133,21 @@ const AddFlight = () => {
               gap: 10,
             }}>
             <View style={styles.SubinputContainer}>
+              <Image style={styles.InputIcon} source={Images.calander} />
               <TextInput
                 style={styles.SubInput}
                 value={currentDate}
                 placeholder="Select Date"
+                editable={false}
               />
             </View>
             <View style={styles.SubinputContainer}>
+              <Image style={styles.InputIcon} source={Images.time} />
               <TextInput
                 style={styles.SubInput}
                 value={currentTime}
                 placeholder="Select Time"
+                editable={false}
               />
             </View>
           </View>

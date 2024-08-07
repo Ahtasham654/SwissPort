@@ -63,7 +63,16 @@ const styles = StyleSheet.create({
   Twocell: {
     marginTop: 15,
   },
+  dropdown: {
+    height: 50,
+    borderColor: '#D9D9D9',
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: 8,
+    marginTop: 5,
+  },
   SubinputContainer: {
+    flexDirection: 'row',
     alignItems: 'center',
     borderRadius: 10,
     marginTop: 5,
@@ -73,9 +82,16 @@ const styles = StyleSheet.create({
     width: '48%',
   },
   SubInput: {
+    flex: 1,
     height: 50,
     borderRadius: 10,
-    // paddingHorizontal: 10,
+    paddingHorizontal: 10,
+  },
+  InputIcon: {
+    position: 'absolute',
+    right: 10,
+    height: 20,
+    width: 20,
   },
   button: {
     width: '100%',

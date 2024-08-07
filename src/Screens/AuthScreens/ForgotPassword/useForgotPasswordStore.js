@@ -21,9 +21,7 @@ const useForgotPasswordStore = create(set => ({
     } catch (error) {
       console.log('error', error);
       set({
-        status:
-          error.response?.data?.message ||
-          'Something went wrong, please try again.',
+        status: error.response?.data?.message || 'Email is not exist',
       });
     } finally {
       set({loading: false});

@@ -57,7 +57,9 @@ const LoginScreen = () => {
                 <Image style={style.inputIcon} source={Images.emailIcon} />
               </View>
             </View>
-            {errors.email && <Text style={{color: 'red'}}>{errors.email}</Text>}
+            {errors.email && (
+              <Text style={{color: 'red', marginTop: 5}}>{errors.email}</Text>
+            )}
             <View style={style.cell}>
               <Text style={style.cellTxt}>Password</Text>
               <View style={style.inputContainer}>
@@ -74,7 +76,9 @@ const LoginScreen = () => {
               </View>
             </View>
             {errors.password && (
-              <Text style={{color: 'red'}}>{errors.password}</Text>
+              <Text style={{color: 'red', marginTop: 5}}>
+                {errors.password}
+              </Text>
             )}
             {status && (
               <Text style={{color: 'red', marginTop: 5}}>{status}</Text>

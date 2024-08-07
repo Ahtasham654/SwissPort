@@ -96,8 +96,8 @@ const styles = StyleSheet.create({
     color: '#65656B',
   },
   selectedTextStyle: {
-    fontSize: 12,
-    color: 'red',
+    fontSize: 15,
+    color: 'black',
   },
   iconStyle: {
     width: 20,

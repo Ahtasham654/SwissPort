@@ -42,7 +42,9 @@ const InProgressFlight = () => {
     <View style={styles.container}>
       <View style={styles.row}>
         <Image style={styles.logo} source={Images.logo} />
-        <Image style={styles.icon} source={Images.LogoutIcon} />
+        <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
+          <Image style={styles.icon} source={Images.LogoutIcon} />
+        </TouchableOpacity>
       </View>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()}>

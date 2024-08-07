@@ -22,6 +22,8 @@ const Images = {
   AirplaneImg: require('../assests/Airplane.png'),
   CameraIcon: require('../assests/camera.png'),
   PictureIcon: require('../assests/PictureIcon.png'),
+  time: require('../assests/time.png'),
+  calander: require('../assests/calander.png'),
 };
 
 export default Images;

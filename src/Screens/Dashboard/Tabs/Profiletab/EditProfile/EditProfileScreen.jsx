@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import {
   View,
   Text,
@@ -17,7 +18,9 @@ const EditProfileScreen = () => {
     <View style={styles.Container}>
       <View style={styles.Row}>
         <Image style={styles.logo} source={Images.logo} />
-        <Image style={styles.Icon} source={Images.LogoutIcon} />
+        <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
+          <Image style={styles.Icon} source={Images.LogoutIcon} />
+        </TouchableOpacity>
       </View>
       <View
         style={{
@@ -47,31 +50,19 @@ const EditProfileScreen = () => {
           <View style={styles.cell}>
             <Text style={styles.cellTxt}>Last Name</Text>
             <View style={styles.inputContainer}>
-              <TextInput
-                style={styles.Input}
-                secureTextEntry
-                placeholder="Enter last name"
-              />
+              <TextInput style={styles.Input} placeholder="Enter last name" />
             </View>
           </View>
           <View style={styles.cell}>
             <Text style={styles.cellTxt}>Email</Text>
             <View style={styles.inputContainer}>
-              <TextInput
-                style={styles.Input}
-                secureTextEntry
-                placeholder="Enter email"
-              />
+              <TextInput style={styles.Input} placeholder="Enter email" />
             </View>
           </View>
           <View style={styles.cell}>
             <Text style={styles.cellTxt}>Password</Text>
             <View style={styles.inputContainer}>
-              <TextInput
-                style={styles.Input}
-                secureTextEntry
-                placeholder="Enter password"
-              />
+              <TextInput style={styles.Input} placeholder="Enter password" />
             </View>
           </View>
           <View style={styles.cell}>
@@ -79,7 +70,6 @@ const EditProfileScreen = () => {
             <View style={styles.inputContainer}>
               <TextInput
                 style={styles.Input}
-                secureTextEntry
                 placeholder="Enter employee number"
               />
             </View>
@@ -89,7 +79,6 @@ const EditProfileScreen = () => {
             <View style={styles.inputContainer}>
               <TextInput
                 style={styles.Input}
-                secureTextEntry
                 placeholder="Enter your station"
               />
             </View>
